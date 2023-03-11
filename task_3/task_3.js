@@ -1,3 +1,8 @@
+//появление смсок разных (Node.cloneNode())
+//вернуть стили к дивам смсок
+
+
+
 //находим элементы и складываем их в переменные
 const chatForm = document.querySelector('.input_send_geolocation_box');
 const btn = document.querySelector('.send');
