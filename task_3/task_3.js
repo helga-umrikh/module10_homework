@@ -30,8 +30,11 @@ websocket.onmessage = function(event) {
     let data = JSON.parse(event.data);
 
     if (data.type == 'message') {
-      //ДОДЕЛАЙ ВЫВОД СООБЩЕНИЙ
-      console.log(data.message.toString());
+      let receivedMessage = data.message.toString();
+      //ДОДЕЛАЙ ВЫВОД СООБЩЕНИЯ ОТ СЕРВЕРА
+      const replyMessage = document.querySelector('.reply-message');
+      replyMessage.style.display = 'flex';
+      replyMessage.textContent = `${receivedMessage}`;
     }    
 }
 
@@ -52,6 +55,13 @@ chatForm.addEventListener('submit', function(event) {
 
         websocket.send(JSON.stringify(data));
         inputMessage.value = '';
+      
+      //вносит текст в сообщение отправителя
+      const myMessage = document.querySelector('.my-message');
+      myMessage.style.display = 'flex';
+      myMessage.textContent = `${message}`;
+      
+      
     }
 }, false);
 
@@ -64,8 +74,10 @@ function showGeolocation() {
   if("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
-      //ДОДЕЛАЙ ВЫВОД ГЕОДАННЫХ
-      console.log(coords.latitude, coords.longitude);
+      //ДОДЕЛАЙ ВЫВОД СМС ГЕОДАННЫХ
+      const geoMessage = document.querySelector('.geo_message');
+      geoMessage.style.display = 'flex';
+      geoMessage.textContent = ` ${coords.latitude}, ${coords.longitude}`
     })
   } else {
     console.log('geolocation is not supported by this browser or blocked')
