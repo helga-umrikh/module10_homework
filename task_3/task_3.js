@@ -82,7 +82,12 @@ function showGeolocation() {
       //ДОДЕЛАЙ ВЫВОД СМС ГЕОДАННЫХ
       const geoMessage = document.querySelector('.geo_message');
       geoMessage.style.display = 'flex';
-      geoMessage.textContent = ` ${coords.latitude}, ${coords.longitude}`
+      //необходимо отправить данные серверу и в чат вывести ссылку
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      
+      geoMessage.href = `https://www.openstreetmap.org/#map=5/${latitude}/${longitude}`;
+      geoMessage.textContent = `Гео-локация`
     })
   } else {
     console.log('geolocation is not supported by this browser or blocked')
